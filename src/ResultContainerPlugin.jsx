@@ -19,12 +19,12 @@ function filterResults (results) {
 const ResultContainerTable = ({ data }) => {
     const results = filterResults(data);
     return (
-        <table className={'Qrcode-result-table'}>
+        <table className="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <td>#</td>
-                    <td>Decoded Text</td>
-                    <td>Format</td>
+                    <th>#</th>
+                    <th>Decoded Text</th>
+                    <th>Format</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,8 +33,8 @@ const ResultContainerTable = ({ data }) => {
                         console.log(result);
                         return (<tr key={i}>
                             <td>{i}</td>
-                            <td>{result.decodedText}</td>
-                            <td>{result.result.format.formatName}</td>
+                            <td className="text-wrap">{result.decodedText}</td>
+                            <td className="text-wrap">{result.result.format.formatName}</td>
                         </tr>);
                     })
                 }
@@ -46,10 +46,14 @@ const ResultContainerTable = ({ data }) => {
 const ResultContainerPlugin = (props) => {
     const results = filterResults(props.results);
     return (
-        <div className='Result-container'>
-            <div className='Result-header'>Scanned results ({results.length})</div>
-            <div className='Result-section'>
-                <ResultContainerTable data={results} />
+        <div className="container-fluid mt-4">
+            <div className="row">
+                <div className="col">
+                    <div className='Result-header'>Scanned results ({results.length})</div>
+                    <div className='Result-section'>
+                        <ResultContainerTable data={results} />
+                    </div>
+                </div>
             </div>
         </div>
     );
